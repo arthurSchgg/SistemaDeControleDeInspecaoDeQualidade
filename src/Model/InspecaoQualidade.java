@@ -7,11 +7,12 @@ public class InspecaoQualidade {
     private int numero;
     private Date data;
     private String criterioAvaliacao;
-    private enum resultado{
+    private enum Resultado{
         APROVADO,
         REPROVADO,
         BLOQUEADO;
     }
+    private Resultado resultado;
     private String observacao;
     private Inspetor inspetor;
     private Componente componente;
@@ -81,6 +82,24 @@ public class InspecaoQualidade {
 
     public void setComponente(Componente componente) {
         this.componente = componente;
+    }
+
+    public Resultado getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(Resultado resultado) {
+        this.resultado = resultado;
+    }
+
+    public void aprovarComponente(Componente componente) {
+        if (this.resultado == resultado.APROVADO) {
+            componente.aprovar();
+        } else if (this.resultado == resultado.REPROVADO){
+            componente.reprovar();
+        } else {
+            componente.bloqueado();
+        }
     }
 
     public void ExibirDados(){

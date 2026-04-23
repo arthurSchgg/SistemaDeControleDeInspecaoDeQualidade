@@ -22,7 +22,7 @@ public class Componente {
 
     private String setorOrigem;
 
-    private enum status {
+    public enum status {
         AGUARDANDO_INSPECAO,
         APROVADO,
         REPROVADO,
@@ -102,19 +102,31 @@ public class Componente {
         this.statusProduto = statusProduto;
     }
 
-    public void ExibirDados() {
-        System.out.println("Código: " + this.codigo + ", Nome: " + this.nome + ", Tipo do produto: " + this.tipoProduto
-                + ", Setor origem: " + this.setorOrigem + ", Status do produto: " + this.statusProduto);
+    public void aprovar() {
+        this.statusProduto = status.APROVADO;
+    }
+
+    public void reprovar(){
+        this.statusProduto = status.REPROVADO;
+    }
+
+    public void bloqueado(){
+        this.statusProduto = status.BLOQUEADO;
     }
 
     public boolean validaçãoInspeção (Componente componente){
-       if(componente.getStatusProduto() == status.APROVADO && componente.getStatusProduto() == status.BLOQUEADO){
-           return true;
-       } else if(componente.getStatusProduto() == status.REPROVADO){
-           System.out.println("Status só irá ser inspecionado novamente com liberação manual!");
-           return false;
-       }
-       return true;
+        if(componente.getStatusProduto() == status.APROVADO && componente.getStatusProduto() == status.BLOQUEADO){
+            return true;
+        } else if(componente.getStatusProduto() == status.REPROVADO){
+            System.out.println("Status só irá ser inspecionado novamente com liberação manual!");
+            return false;
+        }
+        return true;
+    }
+
+    public void ExibirDados() {
+        System.out.println("Código: " + this.codigo + ", Nome: " + this.nome + ", Tipo do produto: " + this.tipoProduto
+                + ", Setor origem: " + this.setorOrigem + ", Status do produto: " + this.statusProduto);
     }
 
 }
