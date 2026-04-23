@@ -95,7 +95,7 @@ public class InspecaoQualidade {
     public void aprovarComponente(Componente componente) {
         if (this.resultado == resultado.APROVADO) {
             componente.aprovar();
-        } else if (this.resultado == resultado.REPROVADO){
+        } else if (this.resultado == resultado.REPROVADO) {
             componente.reprovar();
         } else {
             componente.bloqueado();
